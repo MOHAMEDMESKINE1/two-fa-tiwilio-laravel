@@ -11,7 +11,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->append(\App\Http\Middleware\Check2FA::class);
+        $middleware->alias(['2fa', \App\Http\Middleware\Check2FA::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
